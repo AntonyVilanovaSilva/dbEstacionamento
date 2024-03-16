@@ -1,0 +1,36 @@
+﻿@model IEnumerable<Estacionamento.Models.Marca>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Gestão de Marcas</h2>
+
+<p>
+    @Html.ActionLink("Novo", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            Descrição
+        </th>
+        <th>
+            Ativo
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.MARDESCRICAO)
+        </td>
+        <td>
+            @Html.ActionLink("Editar", "Edit", new { id=item.MARID }) |
+            @Html.ActionLink("Visualizar", "Details", new { id=item.MARID }) |
+            @Html.ActionLink("Excluir", "Delete", new { id=item.MARID })
+        </td>
+    </tr>
+}
+
+</table>

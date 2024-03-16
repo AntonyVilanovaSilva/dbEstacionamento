@@ -1,0 +1,26 @@
+﻿@model Estacionamento.Models.Marca
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Vizualizar</h2>
+
+<div>
+    <h4>Marca</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.MARDESCRICAO)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MARDESCRICAO)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Editar", "Edit", new { id = Model.MARID }) |
+    @Html.ActionLink("Voltar", "Index")
+</p>

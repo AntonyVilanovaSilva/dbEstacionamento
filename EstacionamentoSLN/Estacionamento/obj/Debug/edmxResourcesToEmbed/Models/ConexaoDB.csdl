@@ -1,0 +1,60 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="dbEstacionamentoModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Marca">
+    <Key>
+      <PropertyRef Name="MARID" />
+    </Key>
+    <Property Name="MARID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="MARDESCRICAO" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="Veiculo" Relationship="Self.FK__Veiculo__MARID__38996AB5" FromRole="Marca" ToRole="Veiculo" />
+  </EntityType>
+  <EntityType Name="TicketVaga">
+    <Key>
+      <PropertyRef Name="TICKID" />
+    </Key>
+    <Property Name="TICKID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="VAIID" Type="Int32" />
+    <Property Name="VEIID" Type="Int32" />
+    <Property Name="DATAHORAENTRADA" Type="DateTime" Precision="3" />
+    <Property Name="DATAHORASAIDA" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="Vaga">
+    <Key>
+      <PropertyRef Name="VAIID" />
+    </Key>
+    <Property Name="VAIID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="VAINUMERO" Type="Int32" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Veiculo">
+    <Key>
+      <PropertyRef Name="VEIID" />
+    </Key>
+    <Property Name="VEIID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="VEIPLACA" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="COR" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="MARID" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Marca" Relationship="Self.FK__Veiculo__MARID__38996AB5" FromRole="Veiculo" ToRole="Marca" />
+  </EntityType>
+  <Association Name="FK__Veiculo__MARID__38996AB5">
+    <End Role="Marca" Type="Self.Marca" Multiplicity="1" />
+    <End Role="Veiculo" Type="Self.Veiculo" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Marca">
+        <PropertyRef Name="MARID" />
+      </Principal>
+      <Dependent Role="Veiculo">
+        <PropertyRef Name="MARID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="dbEstacionamentoEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Marca" EntityType="Self.Marca" />
+    <EntitySet Name="TicketVaga" EntityType="Self.TicketVaga" />
+    <EntitySet Name="Vaga" EntityType="Self.Vaga" />
+    <EntitySet Name="Veiculo" EntityType="Self.Veiculo" />
+    <AssociationSet Name="FK__Veiculo__MARID__38996AB5" Association="Self.FK__Veiculo__MARID__38996AB5">
+      <End Role="Marca" EntitySet="Marca" />
+      <End Role="Veiculo" EntitySet="Veiculo" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

@@ -1,0 +1,42 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="dbEstacionamentoModelStoreContainer" CdmEntityContainer="dbEstacionamentoEntities">
+    <EntitySetMapping Name="Marca">
+      <EntityTypeMapping TypeName="dbEstacionamentoModel.Marca">
+        <MappingFragment StoreEntitySet="Marca">
+          <ScalarProperty Name="MARID" ColumnName="MARID" />
+          <ScalarProperty Name="MARDESCRICAO" ColumnName="MARDESCRICAO" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TicketVaga">
+      <EntityTypeMapping TypeName="dbEstacionamentoModel.TicketVaga">
+        <MappingFragment StoreEntitySet="TicketVaga">
+          <ScalarProperty Name="TICKID" ColumnName="TICKID" />
+          <ScalarProperty Name="VAIID" ColumnName="VAIID" />
+          <ScalarProperty Name="VEIID" ColumnName="VEIID" />
+          <ScalarProperty Name="DATAHORAENTRADA" ColumnName="DATAHORAENTRADA" />
+          <ScalarProperty Name="DATAHORASAIDA" ColumnName="DATAHORASAIDA" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Vaga">
+      <EntityTypeMapping TypeName="dbEstacionamentoModel.Vaga">
+        <MappingFragment StoreEntitySet="Vaga">
+          <ScalarProperty Name="VAIID" ColumnName="VAIID" />
+          <ScalarProperty Name="VAINUMERO" ColumnName="VAINUMERO" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Veiculo">
+      <EntityTypeMapping TypeName="dbEstacionamentoModel.Veiculo">
+        <MappingFragment StoreEntitySet="Veiculo">
+          <ScalarProperty Name="VEIID" ColumnName="VEIID" />
+          <ScalarProperty Name="VEIPLACA" ColumnName="VEIPLACA" />
+          <ScalarProperty Name="COR" ColumnName="COR" />
+          <ScalarProperty Name="MARID" ColumnName="MARID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

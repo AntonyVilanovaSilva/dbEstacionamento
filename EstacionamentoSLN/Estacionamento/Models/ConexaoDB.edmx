@@ -1,0 +1,191 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="dbEstacionamentoModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Marca">
+          <Key>
+            <PropertyRef Name="MARID" />
+          </Key>
+          <Property Name="MARID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MARDESCRICAO" Type="varchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TicketVaga">
+          <Key>
+            <PropertyRef Name="TICKID" />
+          </Key>
+          <Property Name="TICKID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="VAIID" Type="int" />
+          <Property Name="VEIID" Type="int" />
+          <Property Name="DATAHORAENTRADA" Type="datetime" />
+          <Property Name="DATAHORASAIDA" Type="datetime" />
+        </EntityType>
+        <EntityType Name="Vaga">
+          <Key>
+            <PropertyRef Name="VAIID" />
+          </Key>
+          <Property Name="VAIID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="VAINUMERO" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Veiculo">
+          <Key>
+            <PropertyRef Name="VEIID" />
+          </Key>
+          <Property Name="VEIID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="VEIPLACA" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="COR" Type="varchar" MaxLength="10" />
+          <Property Name="MARID" Type="int" Nullable="false" />
+        </EntityType>
+        <Association Name="FK__Veiculo__MARID__38996AB5">
+          <End Role="Marca" Type="Self.Marca" Multiplicity="1" />
+          <End Role="Veiculo" Type="Self.Veiculo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Marca">
+              <PropertyRef Name="MARID" />
+            </Principal>
+            <Dependent Role="Veiculo">
+              <PropertyRef Name="MARID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="dbEstacionamentoModelStoreContainer">
+          <EntitySet Name="Marca" EntityType="Self.Marca" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TicketVaga" EntityType="Self.TicketVaga" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Vaga" EntityType="Self.Vaga" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Veiculo" EntityType="Self.Veiculo" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__Veiculo__MARID__38996AB5" Association="Self.FK__Veiculo__MARID__38996AB5">
+            <End Role="Marca" EntitySet="Marca" />
+            <End Role="Veiculo" EntitySet="Veiculo" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="dbEstacionamentoModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Marca">
+          <Key>
+            <PropertyRef Name="MARID" />
+          </Key>
+          <Property Name="MARID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MARDESCRICAO" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Veiculo" Relationship="Self.FK__Veiculo__MARID__38996AB5" FromRole="Marca" ToRole="Veiculo" />
+        </EntityType>
+        <EntityType Name="TicketVaga">
+          <Key>
+            <PropertyRef Name="TICKID" />
+          </Key>
+          <Property Name="TICKID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="VAIID" Type="Int32" />
+          <Property Name="VEIID" Type="Int32" />
+          <Property Name="DATAHORAENTRADA" Type="DateTime" Precision="3" />
+          <Property Name="DATAHORASAIDA" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="Vaga">
+          <Key>
+            <PropertyRef Name="VAIID" />
+          </Key>
+          <Property Name="VAIID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="VAINUMERO" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Veiculo">
+          <Key>
+            <PropertyRef Name="VEIID" />
+          </Key>
+          <Property Name="VEIID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="VEIPLACA" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="COR" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="MARID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Marca" Relationship="Self.FK__Veiculo__MARID__38996AB5" FromRole="Veiculo" ToRole="Marca" />
+        </EntityType>
+        <Association Name="FK__Veiculo__MARID__38996AB5">
+          <End Role="Marca" Type="Self.Marca" Multiplicity="1" />
+          <End Role="Veiculo" Type="Self.Veiculo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Marca">
+              <PropertyRef Name="MARID" />
+            </Principal>
+            <Dependent Role="Veiculo">
+              <PropertyRef Name="MARID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="dbEstacionamentoEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Marca" EntityType="Self.Marca" />
+          <EntitySet Name="TicketVaga" EntityType="Self.TicketVaga" />
+          <EntitySet Name="Vaga" EntityType="Self.Vaga" />
+          <EntitySet Name="Veiculo" EntityType="Self.Veiculo" />
+          <AssociationSet Name="FK__Veiculo__MARID__38996AB5" Association="Self.FK__Veiculo__MARID__38996AB5">
+            <End Role="Marca" EntitySet="Marca" />
+            <End Role="Veiculo" EntitySet="Veiculo" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="dbEstacionamentoModelStoreContainer" CdmEntityContainer="dbEstacionamentoEntities">
+          <EntitySetMapping Name="Marca">
+            <EntityTypeMapping TypeName="dbEstacionamentoModel.Marca">
+              <MappingFragment StoreEntitySet="Marca">
+                <ScalarProperty Name="MARID" ColumnName="MARID" />
+                <ScalarProperty Name="MARDESCRICAO" ColumnName="MARDESCRICAO" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TicketVaga">
+            <EntityTypeMapping TypeName="dbEstacionamentoModel.TicketVaga">
+              <MappingFragment StoreEntitySet="TicketVaga">
+                <ScalarProperty Name="TICKID" ColumnName="TICKID" />
+                <ScalarProperty Name="VAIID" ColumnName="VAIID" />
+                <ScalarProperty Name="VEIID" ColumnName="VEIID" />
+                <ScalarProperty Name="DATAHORAENTRADA" ColumnName="DATAHORAENTRADA" />
+                <ScalarProperty Name="DATAHORASAIDA" ColumnName="DATAHORASAIDA" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Vaga">
+            <EntityTypeMapping TypeName="dbEstacionamentoModel.Vaga">
+              <MappingFragment StoreEntitySet="Vaga">
+                <ScalarProperty Name="VAIID" ColumnName="VAIID" />
+                <ScalarProperty Name="VAINUMERO" ColumnName="VAINUMERO" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Veiculo">
+            <EntityTypeMapping TypeName="dbEstacionamentoModel.Veiculo">
+              <MappingFragment StoreEntitySet="Veiculo">
+                <ScalarProperty Name="VEIID" ColumnName="VEIID" />
+                <ScalarProperty Name="VEIPLACA" ColumnName="VEIPLACA" />
+                <ScalarProperty Name="COR" ColumnName="COR" />
+                <ScalarProperty Name="MARID" ColumnName="MARID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
